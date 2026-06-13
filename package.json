@@ -10,7 +10,9 @@
     "build": "npm run build:main && npm run build:renderer",
     "build:main": "tsc -p tsconfig.main.json",
     "build:renderer": "vite build",
-    "dist": "npm run build && electron-builder"
+    "dist": "npm run build && electron-builder",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.4",
@@ -18,10 +20,10 @@
     "better-sqlite3": "^12.10.0",
     "d3": "^7.9.0",
     "dayjs": "^1.11.13",
-    "zustand": "^5.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^7.1.1"
+    "react-router-dom": "^7.1.1",
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.12",
@@ -34,6 +36,7 @@
     "electron-builder": "^25.1.8",
     "typescript": "^5.7.2",
     "vite": "^6.0.7",
+    "vitest": "^4.1.8",
     "wait-on": "^8.0.1"
   },
   "build": {

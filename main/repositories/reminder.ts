@@ -18,4 +18,8 @@ export class ReminderRepository {
     getDatabase().prepare('INSERT OR REPLACE INTO reminders VALUES (@id,@contactId,@content,@remindAt,@status)').run(reminder);
     return reminder;
   }
+
+  updateStatus(id: string, status: ReminderStatus): void {
+    getDatabase().prepare('UPDATE reminders SET status = ? WHERE id = ?').run(status, id);
+  }
 }
