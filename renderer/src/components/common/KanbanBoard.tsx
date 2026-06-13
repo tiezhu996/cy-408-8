@@ -8,7 +8,7 @@ export function KanbanBoard({ referrals }: { referrals: Referral[] }) {
       {Object.values(ReferralStatus).map((status) => (
         <section className="kanban-column" key={status}>
           <h3>{status}</h3>
-          {referrals.filter((item) => item.status === (status === ReferralStatus.Submitted ? ReferralStatus.Requested : status)).map((item) => <ReferralCard referral={item} key={item.id} />)}
+          {referrals.filter((item) => item.status === status).map((item) => <ReferralCard referral={item} key={item.id} />)}
         </section>
       ))}
     </div>

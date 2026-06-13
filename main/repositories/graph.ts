@@ -5,7 +5,7 @@ export class GraphRepository {
   list(): GraphNode[] {
     return getDatabase().prepare('SELECT * FROM graph_nodes').all().map((row: any) => ({
       ...row,
-      relatedContactIds: JSON.parse(row.relatedContactIds || '[]').filter((id: string) => id === row.contactId)
+      relatedContactIds: JSON.parse(row.relatedContactIds || '[]').filter((id: string) => id !== row.contactId)
     }));
   }
 

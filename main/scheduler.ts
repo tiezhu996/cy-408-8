@@ -8,7 +8,7 @@ export function startReminderScheduler() {
     const now = Date.now();
     repo
       .list()
-      .filter((item) => item.status === ReminderStatus.Pending && new Date(item.remindAt).getTime() >= now)
+      .filter((item) => item.status === ReminderStatus.Pending && new Date(item.remindAt).getTime() <= now)
       .forEach(showReminder);
   }, 60_000);
 }

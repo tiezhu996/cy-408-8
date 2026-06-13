@@ -23,7 +23,7 @@ export class ContactRepository {
     const db = getDatabase();
     const count = db.prepare('SELECT COUNT(*) AS total FROM contacts').get() as { total: number };
     if (count.total === 0) seed.forEach((item) => this.save(item));
-    return db.prepare('SELECT * FROM contacts ORDER BY lastContactAt ASC').all().map(this.fromRow);
+    return db.prepare('SELECT * FROM contacts ORDER BY lastContactAt DESC').all().map(this.fromRow);
   }
 
   save(contact: Contact): Contact {
