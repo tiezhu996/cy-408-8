@@ -1,3 +1,4 @@
+import { BrowserWindow } from 'electron';
 import { Reminder } from '../shared/types/entities';
 import { ReminderStatus } from '../shared/types/enums';
 import { showReminder } from './notification';
@@ -53,8 +54,13 @@ export function processDueReminders(
 export function startReminderScheduler() {
   const repo = new ReminderRepository();
   setInterval(() => {
-    processDueReminders(repo, showReminder, Date.now(), (reminder) => {
+    const result = processDueReminders(repo, showReminder, Date.now(), (reminder) => {
       console.log(`[reminder] 降级提示：${reminder.content}（${new Date(reminder.remindAt).toLocaleString()}）`);
     });
+    if (result.notified.length > 0) {
+      for (const win of BrowserWindow.getAllWindows()) {
+        win.webContents.send('reminders:changed');
+      }
+    }
   }, 60_000);
 }
